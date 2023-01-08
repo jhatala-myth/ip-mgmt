@@ -24,6 +24,15 @@ services:
       default:
     volumes:
       - ${PWD}/phpipam/db:/var/lib/mysql
+    healthcheck:
+      test:
+      [
+        "CMD-SHELL",
+        "echo 'SHOW DATABASES;' | /usr/bin/mysql --user=root --password=${MYSQL_ROOT_PASSWORD}"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     logging:
       driver: "json-file"
       options:
@@ -38,12 +47,22 @@ services:
       - IPAM_DATABASE_PASS=${IPAM_DATABASE_PASS}
       - IPAM_DATABASE_WEBHOST=%
     restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -L http://localhost | grep -q -i 'login'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
     networks:
       default:
     ports:
       - "8001:80"
     depends_on:
-      - phpipam-db
+      phpipam-db:
+        condition: service_healthy
     logging:
       driver: "json-file"
       options:
@@ -56,7 +75,8 @@ services:
     hostname: pdns-auth
     restart: unless-stopped
     depends_on:
-      - phpipam-db
+      phpipam-db:
+        condition: service_healthy
     environment:
       - TZ=Europe/Zurich
       - PDNS_LOG_LEVEL=10
