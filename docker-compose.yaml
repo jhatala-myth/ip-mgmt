@@ -1,0 +1,112 @@
+version: '3.9'
+
+networks:
+  ipam_ipvlan:
+    driver: ipvlan
+    driver_opts:
+      ipvlan_mode: "l2"
+      parent: "ens160"
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SUBNET}
+          gateway: ${SUBNET_GW}
+
+services:
+  phpipam-db:
+    image: mariadb:latest
+    environment:
+      - TZ=Europe/Zurich
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_HOST=%
+    restart: unless-stopped
+    networks:
+      default:
+    volumes:
+      - ${PWD}/phpipam/db:/var/lib/mysql
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  phpipam-web:
+    build: ./phpipam
+    environment:
+      - TZ=Europe/Zurich
+      - IPAM_DATABASE_HOST=phpipam-db
+      - IPAM_DATABASE_PASS=${IPAM_DATABASE_PASS}
+      - IPAM_DATABASE_WEBHOST=%
+    restart: unless-stopped
+    networks:
+      default:
+    ports:
+      - "8001:80"
+    depends_on:
+      - phpipam-db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  powerdns-auth:
+    build: ./power_dns
+    container_name: pdns-auth
+    hostname: pdns-auth
+    restart: unless-stopped
+    depends_on:
+      - phpipam-db
+    environment:
+      - TZ=Europe/Zurich
+      - PDNS_LOG_LEVEL=10
+      - PDNS_WEBSERVER_ALLOWED_FROM=${PDNS_ALLOWED_IP}
+      - PDNS_WEBSERVER_PASSWORD=${PDNS_WEBSERVER_PASSWORD}
+      - PDNS_API_KEY=${PDNS_API_KEY}
+      - PDNS_MYSQL_HOST=${PDNS_MYSQL_HOST}
+      - PDNS_MYSQL_PORT=${PDNS_MYSQL_PORT}
+      - PDNS_MYSQL_DB=${PDNS_MYSQL_DB}
+      - PDNS_MYSQL_USER=${PDNS_MYSQL_USER}
+      - PDNS_MYSQL_PASSWORD=${PDNS_MYSQL_PASSWORD}
+      - PDNS_MYSQL_DNSSEC=DNSSEC
+    networks:
+      ipam_ipvlan:
+        ipv4_address: ${PDNS_AUTH_IP}
+      default:
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "8081:8081/tcp"
+    volumes:
+      - ${PWD}/power_dns/log:/var/log
+      - ${PWD}/power_dns/pdns.conf:/etc/pdns/pdns.conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  power_dns-recursor:
+    build: ./power_recursor
+    container_name: pdns-recursor
+    hostname: pdns-recursor
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Zurich
+      - PDNS_LOG_LEVEL=10
+      - PDNS_WEBSERVER_ALLOWED_FROM=${PDNS_ALLOWED_IP}
+      - PDNS_API_KEY=${PDNS_API_KEY}
+    networks:
+      ipam_ipvlan:
+        ipv4_address: ${PDNS_RECURSOR_IP}
+    ports:
+      - "8082:8082/tcp"
+    volumes:
+      - ${PWD}/power_recursor/log:/var/log
+      - ${PWD}/power_recursor/recursor.conf:/etc/pdns/recursor.conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        
