@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-08T20:07:46.777Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.3" etag="3ZuJvxTv0xBdO9N8ptMK" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-08T20:10:22.617Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.3" etag="FCX39s-DVBu25gP3O4-U" type="github">
   <diagram id="bqsTMmaJHcbLhPMaDeDk" name="Strona-1">
     <mxGraphModel dx="819" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -7,7 +7,7 @@
         <mxCell id="t2JApc_YLnskTHZPWgqo-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-1" target="t2JApc_YLnskTHZPWgqo-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="t2JApc_YLnskTHZPWgqo-1" value="PowerDNS&lt;br&gt;Authorative" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
+        <mxCell id="t2JApc_YLnskTHZPWgqo-1" value="PowerDNS&lt;br&gt;authoritative" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
           <mxGeometry x="340" y="320" width="33.08" height="40" as="geometry" />
         </mxCell>
         <mxCell id="t2JApc_YLnskTHZPWgqo-2" value="PowerDNS&lt;br&gt;recursor" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
