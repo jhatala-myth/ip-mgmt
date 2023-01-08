@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-08T20:02:58.938Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.3" etag="bwDqv3wC2GmJ6XGRdMaL" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-08T20:07:46.777Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.3" etag="3ZuJvxTv0xBdO9N8ptMK" type="github">
   <diagram id="bqsTMmaJHcbLhPMaDeDk" name="Strona-1">
     <mxGraphModel dx="819" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -25,7 +25,7 @@
         <mxCell id="t2JApc_YLnskTHZPWgqo-4" value="phpIPAM" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.tower_server;" vertex="1" parent="1">
           <mxGeometry x="230" y="320" width="30.59" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="t2JApc_YLnskTHZPWgqo-18" value="&amp;nbsp;ip accocation&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-17" target="t2JApc_YLnskTHZPWgqo-3">
+        <mxCell id="t2JApc_YLnskTHZPWgqo-18" value="&amp;nbsp;ip allocation&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-17" target="t2JApc_YLnskTHZPWgqo-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="t2JApc_YLnskTHZPWgqo-19" value="&amp;nbsp;DNS request / respond&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-17" target="t2JApc_YLnskTHZPWgqo-1">
