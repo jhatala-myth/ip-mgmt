@@ -1,1 +1,46 @@
-<mxfile host="app.diagrams.net" modified="2023-01-08T19:47:39.714Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.3" etag="9EsOWzC5BkJj3dKZDCGJ" type="github"><diagram id="G9sEgDjK-8DOqdwODMOj">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2023-01-08T20:02:58.938Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" version="20.8.3" etag="bwDqv3wC2GmJ6XGRdMaL" type="github">
+  <diagram id="bqsTMmaJHcbLhPMaDeDk" name="Strona-1">
+    <mxGraphModel dx="819" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t2JApc_YLnskTHZPWgqo-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-1" target="t2JApc_YLnskTHZPWgqo-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-1" value="PowerDNS&lt;br&gt;Authorative" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
+          <mxGeometry x="340" y="320" width="33.08" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-2" value="PowerDNS&lt;br&gt;recursor" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" vertex="1" parent="1">
+          <mxGeometry x="430" y="320" width="33.08" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#e51400;strokeColor=#B20000;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-3" target="t2JApc_YLnskTHZPWgqo-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-3" value="pfSense&lt;br&gt;DHCP" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dhcp_server;" vertex="1" parent="1">
+          <mxGeometry x="230" y="210" width="33.78" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#e51400;strokeColor=#B20000;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-4" target="t2JApc_YLnskTHZPWgqo-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-4" value="phpIPAM" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.tower_server;" vertex="1" parent="1">
+          <mxGeometry x="230" y="320" width="30.59" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-18" value="&amp;nbsp;ip accocation&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-17" target="t2JApc_YLnskTHZPWgqo-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-19" value="&amp;nbsp;DNS request / respond&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="t2JApc_YLnskTHZPWgqo-17" target="t2JApc_YLnskTHZPWgqo-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="105" y="300" />
+              <mxPoint x="357" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2JApc_YLnskTHZPWgqo-17" value="client" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.thin_client;" vertex="1" parent="1">
+          <mxGeometry x="90" y="215" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
