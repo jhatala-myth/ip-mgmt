@@ -1,2 +1,2 @@
 # ip-mgmt
-![flow](ip-mgmt.drawio.png)
+![flow](/ip_mgmt.drawio.png)
