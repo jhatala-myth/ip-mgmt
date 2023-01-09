@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-09T21:40:30.479Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" etag="aNXLfd6H94T_WH_1kSH7" version="20.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-09T21:42:30.124Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" etag="3hZbEMOr33oJUUKIDVdf" version="20.8.3" type="github">
   <diagram id="bqsTMmaJHcbLhPMaDeDk" name="Strona-1">
     <mxGraphModel dx="989" dy="636" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -24,7 +24,7 @@
         <mxCell id="t2JApc_YLnskTHZPWgqo-2" value="PowerDNS&lt;br&gt;recursor" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dns_server;" parent="1" vertex="1">
           <mxGeometry x="360" y="430" width="33.08" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="t2JApc_YLnskTHZPWgqo-7" value="&amp;nbsp;ip registration&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#e51400;strokeColor=#B20000;strokeWidth=2;" parent="1" source="t2JApc_YLnskTHZPWgqo-3" target="t2JApc_YLnskTHZPWgqo-1" edge="1">
+        <mxCell id="t2JApc_YLnskTHZPWgqo-7" value="&amp;nbsp;client registration&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#e51400;strokeColor=#B20000;strokeWidth=2;" parent="1" source="t2JApc_YLnskTHZPWgqo-3" target="t2JApc_YLnskTHZPWgqo-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="t2JApc_YLnskTHZPWgqo-3" value="pfSense&lt;br&gt;DHCP" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.dhcp_server;" parent="1" vertex="1">
