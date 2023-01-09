@@ -4,9 +4,9 @@ RUN addgroup -g 1001 pdns
 RUN adduser  -u 1001 -G pdns -D pdns
 
 # Install PowerDNS & MySQL Backend
-RUN apk --update --no-cache add pdns pdns-backend-mysql && \
+RUN apk --update --no-cache add tzdata pdns pdns-backend-mysql && \
     rm -rf /var/cache/apk/*
-
+ENV TZ=UTC
 # Create Directory
 RUN mkdir /pdns && \
     chmod 755 -R /pdns && \

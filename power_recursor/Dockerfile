@@ -4,9 +4,9 @@ RUN addgroup -g 1001 recursor
 RUN adduser  -u 1001 -G recursor -D recursor
 
 # Install PowerDNS
-RUN apk --update --no-cache add pdns-recursor && \
+RUN apk --update --no-cache add tzdata pdns-recursor && \
     rm -rf /var/cache/apk/*
-
+ENV TZ=UTC
 RUN mkdir -p /etc/pdns/api.d \
   && chown -R recursor: /etc/pdns/api.d \
   && mkdir -p /var/run/pdns-recursor \
