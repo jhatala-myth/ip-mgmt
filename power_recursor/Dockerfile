@@ -4,7 +4,7 @@ RUN addgroup -g 1001 recursor
 RUN adduser  -u 1001 -G recursor -D recursor
 
 # Install PowerDNS
-RUN apk --update --no-cache add tzdata pdns-recursor && \
+RUN apk --update --no-cache add bash tzdata curl tcpdump pdns-recursor && \
     rm -rf /var/cache/apk/*
 ENV TZ=UTC
 RUN mkdir -p /etc/pdns/api.d \
@@ -17,4 +17,3 @@ RUN chmod +x /entrypoint.sh
 
 EXPOSE 53/tcp 53/udp 8081
 CMD [ "/entrypoint.sh" ]
-
