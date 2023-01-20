@@ -24,6 +24,7 @@ services:
       default:
     volumes:
       - ${PWD}/phpipam/db:/var/lib/mysql
+      - ${PWD}/power_dns/schema.mysql.sql:/docker-entrypoint-initdb.d/pdns-db_init.sql
     healthcheck:
       test:
       [
