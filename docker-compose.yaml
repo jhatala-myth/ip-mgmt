@@ -30,7 +30,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "echo 'SHOW DATABASES;' | $(which mariadb) --user=root --password=${MYSQL_ROOT_PASSWORD}"
+          "echo 'SHOW DATABASES;' | `which mariadb` --user=root --password=${MYSQL_ROOT_PASSWORD}"
         ]
       interval: 5s
       timeout: 5s
