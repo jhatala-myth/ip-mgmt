@@ -1,3 +1,7 @@
+---
+--- This is the 4.7 schema. https://doc.powerdns.com/authoritative/backends/generic-mysql.html
+---
+
 CREATE DATABASE IF NOT EXISTS powerdns;
 GRANT ALL ON powerdns.* TO 'power_admin'@'%' IDENTIFIED BY 'esushooKohfoo0';
 GRANT ALL ON powerdns.* TO 'power_admin'@'%.localdomain' IDENTIFIED BY 'esushooKohfoo0';
@@ -8,87 +12,112 @@ USE powerdns;
 -- Table structure for table `cryptokeys`
 --
 
-CREATE TABLE IF NOT EXISTS `cryptokeys` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `domain_id` int(11) NOT NULL,
-  `flags` int(11) NOT NULL,
-  `active` tinyint(1) DEFAULT NULL,
-  `content` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `domainidindex` (`domain_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE cryptokeys (
+  id                    INT AUTO_INCREMENT,
+  domain_id             INT NOT NULL,
+  flags                 INT NOT NULL,
+  active                BOOL,
+  published             BOOL DEFAULT 1,
+  content               TEXT,
+  PRIMARY KEY(id)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+CREATE INDEX domainidindex ON cryptokeys(domain_id);
 
 --
 -- Table structure for table `domainmetadata`
 --
 
-CREATE TABLE IF NOT EXISTS `domainmetadata` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `domain_id` int(11) NOT NULL,
-  `kind` varchar(32) DEFAULT NULL,
-  `content` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `domainmetadata_idx` (`domain_id`,`kind`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE domainmetadata (
+  id                    INT AUTO_INCREMENT,
+  domain_id             INT NOT NULL,
+  kind                  VARCHAR(32),
+  content               TEXT,
+  PRIMARY KEY (id)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+CREATE INDEX domainmetadata_idx ON domainmetadata (domain_id, kind);
 
 --
 -- Table structure for table `domains`
 --
 
-CREATE TABLE IF NOT EXISTS `domains` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `master` varchar(128) DEFAULT NULL,
-  `last_check` int(11) DEFAULT NULL,
-  `type` varchar(6) NOT NULL,
-  `notified_serial` int(11) DEFAULT NULL,
-  `account` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_index` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE domains (
+  id                    INT AUTO_INCREMENT,
+  name                  VARCHAR(255) NOT NULL,
+  master                VARCHAR(128) DEFAULT NULL,
+  last_check            INT DEFAULT NULL,
+  type                  VARCHAR(8) NOT NULL,
+  notified_serial       INT UNSIGNED DEFAULT NULL,
+  account               VARCHAR(40) CHARACTER SET 'utf8' DEFAULT NULL,
+  options               VARCHAR(64000) DEFAULT NULL,
+  catalog               VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (id)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+CREATE UNIQUE INDEX name_index ON domains(name);
+CREATE INDEX catalog_idx ON domains(catalog);
 
 --
 -- Table structure for table `records`
 --
 
-CREATE TABLE IF NOT EXISTS `records` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `domain_id` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `type` varchar(10) DEFAULT NULL,
-  `content` varchar(64000) DEFAULT NULL,
-  `ttl` int(11) DEFAULT NULL,
-  `prio` int(11) DEFAULT NULL,
-  `change_date` int(11) DEFAULT NULL,
-  `disabled` tinyint(1) DEFAULT 0,
-  `ordername` varchar(255) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
-  `auth` tinyint(1) DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `nametype_index` (`name`,`type`),
-  KEY `domain_id` (`domain_id`),
-  KEY `ordername` (`ordername`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE records (
+  id                    BIGINT AUTO_INCREMENT,
+  domain_id             INT DEFAULT NULL,
+  name                  VARCHAR(255) DEFAULT NULL,
+  type                  VARCHAR(10) DEFAULT NULL,
+  content               VARCHAR(64000) DEFAULT NULL,
+  ttl                   INT DEFAULT NULL,
+  prio                  INT DEFAULT NULL,
+  disabled              TINYINT(1) DEFAULT 0,
+  ordername             VARCHAR(255) BINARY DEFAULT NULL,
+  auth                  TINYINT(1) DEFAULT 1,
+  PRIMARY KEY (id)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+CREATE INDEX nametype_index ON records(name,type);
+CREATE INDEX domain_id ON records(domain_id);
+CREATE INDEX ordername ON records (ordername);
 
 --
 -- Table structure for table `supermasters`
 --
 
-CREATE TABLE IF NOT EXISTS `supermasters` (
-  `ip` varchar(64) NOT NULL,
-  `nameserver` varchar(255) NOT NULL,
-  `account` varchar(40) NOT NULL,
-  PRIMARY KEY (`ip`,`nameserver`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE supermasters (
+  ip                    VARCHAR(64) NOT NULL,
+  nameserver            VARCHAR(255) NOT NULL,
+  account               VARCHAR(40) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (ip, nameserver)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+
+CREATE TABLE comments (
+  id                    INT AUTO_INCREMENT,
+  domain_id             INT NOT NULL,
+  name                  VARCHAR(255) NOT NULL,
+  type                  VARCHAR(10) NOT NULL,
+  modified_at           INT NOT NULL,
+  account               VARCHAR(40) CHARACTER SET 'utf8' DEFAULT NULL,
+  comment               TEXT CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (id)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+CREATE INDEX comments_name_type_idx ON comments (name, type);
+CREATE INDEX comments_order_idx ON comments (domain_id, modified_at);
 
 --
 -- Table structure for table `tsigkeys`
 --
 
-CREATE TABLE IF NOT EXISTS `tsigkeys` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `algorithm` varchar(50) DEFAULT NULL,
-  `secret` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `namealgoindex` (`name`,`algorithm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE tsigkeys (
+  id                    INT AUTO_INCREMENT,
+  name                  VARCHAR(255),
+  algorithm             VARCHAR(50),
+  secret                VARCHAR(255),
+  PRIMARY KEY (id)
+) Engine=InnoDB CHARACTER SET 'latin1';
+
+CREATE UNIQUE INDEX namealgoindex ON tsigkeys(name, algorithm);
+
+
