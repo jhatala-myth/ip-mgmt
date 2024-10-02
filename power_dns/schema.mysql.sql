@@ -120,4 +120,4 @@ CREATE TABLE tsigkeys (
 
 CREATE UNIQUE INDEX namealgoindex ON tsigkeys(name, algorithm);
 
-
+ALTER TABLE records ADD change_date int;
