@@ -18,4 +18,4 @@ pdns_server \
 	--webserver-address=${:-"0.0.0.0"} \
 	--webserver-port=${:-"8081"} \
 	--webserver-allow-from=${PDNS_WEBSERVER_ALLOWED_FROM:-"127.0.0.1,::1"} \
-	--webserver-password=${PDNS_WEBSERVER_PASSWORD:-""} \
+	--webserver-password=${PDNS_WEBSERVER_PASSWORD:-""} 
