@@ -1,4 +1,4 @@
-CREATE IF NOT EXISTS DATABASE powerdns;
+CREATE DATABASE IF NOT EXISTS powerdns;
 GRANT ALL ON powerdns.* TO 'power_admin'@'%' IDENTIFIED BY 'esushooKohfoo0';
 GRANT ALL ON powerdns.* TO 'power_admin'@'%.localdomain' IDENTIFIED BY 'esushooKohfoo0';
 FLUSH PRIVILEGES;
