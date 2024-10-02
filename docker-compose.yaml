@@ -118,6 +118,7 @@ services:
       - TZ=Europe/Warsaw
       - PDNS_LOG_LEVEL=10
       - PDNS_WEBSERVER_ALLOWED_FROM=${PDNS_ALLOWED_IP}
+      - PDNS_WEBSERVER_PASSWORD=${PDNS_WEBSERVER_PASSWORD}
       - PDNS_API_KEY=${PDNS_API_KEY}
     networks:
       ipam_ipvlan:
