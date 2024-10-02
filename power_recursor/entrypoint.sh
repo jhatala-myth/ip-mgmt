@@ -5,7 +5,7 @@ chown recursor: /etc/pdns/recursor.conf
 # RUN Service
 pdns_recursor \
 	--loglevel=${PDNS_LOG_LEVEL:-0} \
-  --api=yes \
+	--api=yes \
 	--api-key=${PDNS_API_KEY} \
 	--local-address="0.0.0.0" \
 	--local-port=53 \

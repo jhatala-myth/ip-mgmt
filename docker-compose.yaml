@@ -5,7 +5,7 @@ networks:
     driver: ipvlan
     driver_opts:
       ipvlan_mode: "l2"
-      parent: "ens160"
+      parent: ${NETWORK_IF}
     ipam:
       driver: default
       config:
@@ -16,7 +16,7 @@ services:
   phpipam-db:
     image: mariadb:latest
     environment:
-      - TZ=Europe/Zurich
+      - TZ=Europe/Warsaw
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_ROOT_HOST=%
     restart: unless-stopped
@@ -43,7 +43,7 @@ services:
   phpipam-web:
     build: ./phpipam
     environment:
-      - TZ=Europe/Zurich
+      - TZ=Europe/Warsaw
       - IPAM_DATABASE_HOST=phpipam-db
       - IPAM_DATABASE_PASS=${IPAM_DATABASE_PASS}
       - IPAM_DATABASE_WEBHOST=%
@@ -70,7 +70,7 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  powerdns-auth:
+  powerdns-server:
     build: ./power_dns
     container_name: pdns-auth
     hostname: pdns-auth
@@ -79,7 +79,7 @@ services:
       phpipam-db:
         condition: service_healthy
     environment:
-      - TZ=Europe/Zurich
+      - TZ=Europe/Warsaw
       - PDNS_LOG_LEVEL=10
       - PDNS_WEBSERVER_ALLOWED_FROM=${PDNS_ALLOWED_IP}
       - PDNS_WEBSERVER_PASSWORD=${PDNS_WEBSERVER_PASSWORD}
@@ -92,7 +92,7 @@ services:
       - PDNS_MYSQL_DNSSEC=DNSSEC
     networks:
       ipam_ipvlan:
-        ipv4_address: ${PDNS_AUTH_IP}
+        ipv4_address: ${PDNS_SERVER_IP}
       default:
     ports:
       - "53:53/udp"
@@ -107,13 +107,13 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  power_dns-recursor:
+  powerdns-recursor:
     build: ./power_recursor
     container_name: pdns-recursor
     hostname: pdns-recursor
     restart: unless-stopped
     environment:
-      - TZ=Europe/Zurich
+      - TZ=Europe/Warsaw
       - PDNS_LOG_LEVEL=10
       - PDNS_WEBSERVER_ALLOWED_FROM=${PDNS_ALLOWED_IP}
       - PDNS_API_KEY=${PDNS_API_KEY}
