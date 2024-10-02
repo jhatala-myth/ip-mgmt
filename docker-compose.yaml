@@ -15,6 +15,7 @@ networks:
 services:
   phpipam-db:
     image: mariadb:latest
+    container_name: phpipam-db
     environment:
       - TZ=Europe/Warsaw
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -27,10 +28,10 @@ services:
       - ${PWD}/power_dns/schema.mysql.sql:/docker-entrypoint-initdb.d/pdns-db_init.sql
     healthcheck:
       test:
-      [
-        "CMD-SHELL",
-        "echo 'SHOW DATABASES;' | /usr/bin/mysql --user=root --password=${MYSQL_ROOT_PASSWORD}"
-      ]
+        [
+          "CMD-SHELL",
+          "echo 'SHOW DATABASES;' | $(which mariadb) --user=root --password=${MYSQL_ROOT_PASSWORD}"
+        ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -42,6 +43,7 @@ services:
 
   phpipam-web:
     build: ./phpipam
+    container_name: phpimap-web
     environment:
       - TZ=Europe/Warsaw
       - IPAM_DATABASE_HOST=phpipam-db
@@ -72,8 +74,8 @@ services:
 
   powerdns-server:
     build: ./power_dns
-    container_name: pdns-auth
-    hostname: pdns-auth
+    container_name: pdns-server
+    hostname: pdns-server
     restart: unless-stopped
     depends_on:
       phpipam-db:
