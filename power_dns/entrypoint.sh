@@ -15,7 +15,7 @@ pdns_server \
 	--gmysql-password=${PDNS_MYSQL_PASSWORD} \
 	--gmysql-dnssec=${PDNS_MYSQL_DNSSEC}
 	--webserver=yes \
-	--webserver-address=${:-"0.0.0.0"} \
-	--webserver-port=${:-"8081"} \
+	--webserver-address=${PDNS_WEBSERVER_IP:-"0.0.0.0"} \
+	--webserver-port=${PDNS_WEBSERVER_PORT:-"8081"} \
 	--webserver-allow-from=${PDNS_WEBSERVER_ALLOWED_FROM:-"127.0.0.1,::1"} \
 	--webserver-password=${PDNS_WEBSERVER_PASSWORD:-""} 

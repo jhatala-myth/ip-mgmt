@@ -9,7 +9,7 @@ pdns_recursor \
 	--local-address="0.0.0.0" \
 	--local-port=53 \
 	--webserver=yes \
-	--webserver-address=${:-"0.0.0.0"} \
-	--webserver-port=${:-"8082"} \
+	--webserver-address=${RECURSOR_WEB_IP:-"0.0.0.0"} \
+	--webserver-port=${RECURSOR_WEB_PORT:-"8082"} \
 	--webserver-allow-from=${PDNS_WEBSERVER_ALLOWED_FROM:-"127.0.0.1,::1"} \
 	--webserver-password=${PDNS_WEBSERVER_PASSWORD:-""} 
